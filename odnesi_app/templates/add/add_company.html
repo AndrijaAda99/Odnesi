@@ -22,23 +22,23 @@ Dodaj kompaniju
     <div class="field">
         <label>Adresa kompanije</label>
         <div class="field">
-            <input type="text" name="address" placeholder="Adresa kompanije">
+            <input type="text" name="address" placeholder="Adresa kompanije" required>
         </div>
     </div>
     <h4 class="ui dividing header">Kontakt Informacije</h4>
     <div class="field">
         <label>Broj telefona</label>
         <div class="field">
-            <input type="text" name="phone_number" placeholder="+(381)64-555-666">
+            <input type="text" name="phone_number" placeholder="+(381)64-555-666" required>
         </div>
     </div>
     <div class="field">
         <label>Email</label>
         <div class="field">
-            <input type="email" name="email" placeholder="you@yourcompany.com">
+            <input type="email" name="email" placeholder="you@yourcompany.com" required>
         </div>
     </div>
-    <div class="ui button" tabindex="0">Submit Order</div>
+    <input class="ui button" type="submit" tabindex="0" value="Dodaj">
 </form>
 
 {% endblock %}
