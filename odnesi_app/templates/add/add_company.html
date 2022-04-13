@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dodaj kompaniju
+{% endblock %}
+
+{% block header %}
+
+<h1 class="ui center aligned header">Dodaj kompaniju</h1>
+
+{% endblock %}
+
+{% block content %}
+<form class="ui form" method="post">
+    <h4 class="ui dividing header">Informacije o kompaniji</h4>
+    <div class="field">
+        <label>Ime kompanije</label>
+        <div class="field">
+            <input type="text" name="name" placeholder="Ime kompanije">
+        </div>
+    </div>
+    <div class="field">
+        <label>Adresa kompanije</label>
+        <div class="field">
+            <input type="text" name="address" placeholder="Adresa kompanije">
+        </div>
+    </div>
+    <h4 class="ui dividing header">Kontakt Informacije</h4>
+    <div class="field">
+        <label>Broj telefona</label>
+        <div class="field">
+            <input type="text" name="phone_number" placeholder="+(381)64-555-666">
+        </div>
+    </div>
+    <div class="field">
+        <label>Email</label>
+        <div class="field">
+            <input type="email" name="email" placeholder="you@yourcompany.com">
+        </div>
+    </div>
+    <div class="ui button" tabindex="0">Submit Order</div>
+</form>
+
+{% endblock %}
+

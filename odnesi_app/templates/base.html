@@ -2,44 +2,32 @@
 <head>
     <link href=
     "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-                rel="stylesheet" />
+          rel="stylesheet" />
     <script src=
     "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
     </script>
 
-    <title>Odnesi</title>
-
+    <title>{% block title %}{% endblock %}</title>
 </head>
-
-
 <body>
-
-
-
-<nav>
-
-
-<div class="ui menu">
-  <div class="header item">
-    Odnesi
-  </div>
-  <a class="item" href="">
-    Dodaj kompaniju
-  </a>
-  <a class="item">
-    Dodaj otpad
-  </a>
-  <a class="item">
-    Pregled
-  </a>
-</div>
-</nav>
-    <section class="content">
-    <header>
-        {% block header %}
-
-        {% endblock %}
-    </header>
-    {% block content %}{% endblock %}
+    <nav>
+        <div class="ui center alignment menu">
+            <div class="header item">
+                Odnesi
+            </div>
+            <a class="item" href="/">
+                Pregled
+            </a>
+            <a class="item" href="/add/add_company">
+                Dodaj kompaniju
+            </a>
+            <a class="item" href="/add/add_waste">
+                Dodaj otpad
+            </a>
+        </div>
+    </nav>
+    {% block header %}{% endblock %}
+    <section class="ui container">
+        {% block content %}{% endblock %}
     </section>
 </body>
