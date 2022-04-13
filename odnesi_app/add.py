@@ -44,6 +44,39 @@ def add_company():
 
 @bp.route('/add_waste', methods=('GET', 'POST'))
 def add_waste():
+    if request.method == 'POST':
+        name = request.form['name']
+        amount = request.form['amount']
+        location = request.form['location']
+        phone_number = request.form['phone_number']
+        culture = request.form['culture']
+
+        db = get_db()
+        error = None
+
+        if not name:
+            error = 'Name is required.'
+        elif not phone_number:
+            error = 'Phone number is required.'
+        elif not location:
+            error = 'Location is required.'
+        elif not culture:
+            error = 'Culture is required.'
+        elif not amount:
+            error = 'Amount is required.'
+
+        if error is None:
+            try:
+                db.execute(
+                        "INSERT INTO waste (name, phone_number, location, culture, amount) VALUES (?, ?, ?, ?, ?)",
+                        (name, phone_number, location, culture, amount),
+                        )
+                db.commit()
+            except db.DatabaseError:
+                error = f"Databas error!"
+            else:
+                return redirect(url_for("add.add_waste"))
+
     return render_template('add/add_waste.html')
 
 

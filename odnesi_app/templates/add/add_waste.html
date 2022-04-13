@@ -16,35 +16,34 @@ Dodaj otpad
     <div class="field">
         <label>Ime vlasnika</label>
         <div class="field">
-            <input type="text" name="name" placeholder="Ime vlasnika">
+            <input type="text" name="name" placeholder="Ime vlasnika" required>
         </div>
     </div>
     <div class="field">
         <label>Broj telefona</label>
         <div class="field">
-            <input type="text" name="phone_number" placeholder="+(381)64-555-666">
+            <input type="text" name="phone_number" placeholder="+(381)64-555-666" required>
         </div>
     </div>
-    <h4 class="ui dividing header">Kontakt Informacije</h4>
     <div class="field">
         <label>Lokacija</label>
         <div class="field">
-            <input type="text" name="location" placeholder="Lokacija">
+            <input type="text" name="location" placeholder="Lokacija" required>
         </div>
     </div>
     <div class="field">
         <label>Poljoprivredna kultura</label>
         <div class="field">
-            <input type="text" name="culture" placeholder="Kukuruz">
+            <input type="text" name="culture" placeholder="Kukuruz" required>
         </div>
     </div>
     <div class="field">
-        <label>Poljoprivredna kultura</label>
+        <label>Kolicina</label>
         <div class="field">
-            <input type="text" name="culture" placeholder="Kukuruz">
+            <input type="text" name="amount" placeholder="0 kg" required>
         </div>
     </div>
-    <div class="ui button" tabindex="0">Submit Order</div>
+    <input class="ui button" type="submit" tabindex="0" value="Dodaj">
 </form>
 
 {% endblock %}
