@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}
+Pregled
+{% endblock %}
+
+{% block header %}
+
+<h1 class="ui center aligned header">Pregled</h1>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="ui two column grid">
+    <div class="ui column">
+        <div class="ui segment">
+            <h3 class="ui dividing header">Kompanije</h3>
+            <div class="ui segments">
+                {% for company in companies %}
+                <div class="ui segment">
+                    <h4 class="ui dividing header">{{ company['name'] }}</h4>
+                    <div class="ui list">
+                        <div class="item">
+                            <i class="map marker alternate icon"></i>
+                            <div class="content">
+                                <div class="description">
+                                    {{ company['location'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="envelope icon"></i>
+                            <div class="content">
+                                <div class="description">
+                                    <a href="mailto: {{ company['email'] }}">{{ company['email'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="phone icon"></i>
+                            <div class="content">
+                                <div class="description">
+                                    <a href="tel: {{ company['phone_number'] }}">{{ company['phone_number'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="ui column">
+        <div class="ui segment">
+            <h3 class="ui dividing header">Otpad</h3>
+            <div class="ui segments">
+                {% for waste in wastes %}
+                <div class="ui segment">
+                    <h4 class="ui dividing header">{{ waste['name'] }}</h4>
+                    <div class="ui list">
+                        <div class="item">
+                            <i class="map marker alternate icon"></i>
+                            <div class="content">
+                                <div class="description">
+                                    {{ waste['location'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="phone icon"></i>
+                            <div class="content">
+                                <div class="description">
+                                    <a href="tel: {{ waste['phone_number'] }}">{{ waste['phone_number'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="tree icon"></i>
+                            <div class="content">
+                                <div class="description">
+                                    {{ waste['culture'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="square outline icon"></i>
+                            <div class="content">
+                                <div class="description">
+                                    {{ waste['amount'] }}ha
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
