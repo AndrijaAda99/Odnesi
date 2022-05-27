@@ -47,9 +47,13 @@ def add_waste():
     if request.method == 'POST':
         name = request.form['name']
         amount = request.form['amount']
-        location = request.form['location']
+        lat = request.form['lat']
+        lon = request.form['lon']
         phone_number = request.form['phone_number']
         culture = request.form['culture']
+
+        location = str(lat) + ", " + str(lon)
+        print(location)
 
         db = get_db()
         error = None

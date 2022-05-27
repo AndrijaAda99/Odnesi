@@ -39,5 +39,8 @@ def create_app(test_config=None):
     app.register_blueprint(view.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import map
+    app.register_blueprint(map.bp)
+
     return app
 

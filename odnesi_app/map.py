@@ -1,71 +1,29 @@
-from matplotlib import pyplot as plt
-from io import BytesIO
-from PIL import Image
-import requests
-import pandas as pd
-import math
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
+)
 
-URL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+import folium
 
-TILE_SIZE = 256
+from odnesi_app.db import get_db
 
-df = pd.read_csv('data.csv')
+bp = Blueprint('map', __name__, url_prefix='/map')
 
-def point_to_pixels(lat, lon, zoom):
-    """convert gps coordinates to web mercator"""
-    r = math.pow(2, zoom) * TILE_SIZE
-    lat = math.radians(lat)
+@bp.route('')
+def map():
+    db = get_db()
+    waste = db.execute(
+        'SELECT name, location, phone_number, culture, amount FROM waste;'
+    ).fetchall()
 
-    x = int((lon + 180.0) / 360.0 * r)
-    y = int((1.0 - math.log(math.tan(lat) + (1.0 / math.cos(lat))) / math.pi) / 2.0 * r)
+    folium_map = folium.Map(location=[44.817778, 20.456944], zoom_start=10)
 
-    return x, y
+    for w in waste:
+        n, e = w['location'].split(', ')
+        folium.Marker(
+            location=[n, e],
+            popup=w['name'] + '; ' + w['phone_number'] + '; ' + w['culture'] + '; ' + w['amount'],
+        ).add_to(folium_map)
 
-def cal_average(num):
-    sum_num = 0
-    for t in num:
-        sum_num = sum_num + t
-
-    avg = sum_num / len(num)
-    return avg
-
-top, bot = df.lat.max(), df.lat.min()
-lef, rgt = df.lon.min(), df.lon.max()
-
-zoom = 12
-x0, y0 = point_to_pixels(lef, top, zoom)
-x1, y1 = point_to_pixels(rgt, bot, zoom)
-
-lat = cal_average(df['lat'])
-lon = cal_average(df['lon'])
-
-print(lat)
-print(lon)
-
-x, y = point_to_pixels(lat, lon, zoom)
-
-x_tiles, y_tiles = int(x / TILE_SIZE), int(y / TILE_SIZE)
-
-# format the url
-url = URL.format(x=x_tiles, y=y_tiles, z=zoom)
-
-# make the request
-with requests.get(url) as resp:
-    img = Image.open(BytesIO(resp.content))
-
-x = df['lat']
-y = df['lon']
-
-fig, ax = plt.subplots()
-
-ax.imshow(img, extent=(lef, rgt, bot, top))
-ax.scatter(x,y)
-ax.set_ylim(bot, top)
-ax.set_xlim(lef, rgt)
-
-
-
-fig.show()
-
+    return folium_map._repr_html_()
 
 

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Dodaj otpad
+Dodaj otpad | Odnesi
 {% endblock %}
 
 {% block header %}
@@ -27,20 +27,26 @@ Dodaj otpad
     </div>
     <div class="field">
         <label>Lokacija</label>
-        <div class="field">
-            <input type="text" name="location" placeholder="Lokacija" required>
+        <div class="two fields">
+            <div class="field">
+                <input type="number" name="lat" placeholder="10.12 N" step="any" required>
+            </div>
+            <div class="field">
+                <input type="number" name="lon" placeholder="40.40 E" step="any" required>
+            </div>
         </div>
     </div>
     <div class="field">
         <label>Poljoprivredna kultura</label>
-        <div class="field">
-            <input type="text" name="culture" placeholder="Kukuruz" required>
-        </div>
+        <select class="ui fluid dropdown" name="culture">
+            <option value="Slama">Slama</option>
+            <option value="Kukuruz">Kukuruz</option>
+        </select>
     </div>
     <div class="field">
         <label>Kolicina</label>
         <div class="field">
-            <input type="text" name="amount" placeholder="0 kg" required>
+            <input type="number" name="amount" placeholder="100 ha" required>
         </div>
     </div>
     <input class="ui button" type="submit" tabindex="0" value="Dodaj">
